@@ -4,17 +4,334 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório - Julius Financeiro</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --dark-bg: #1a1a1a;
+            --card-bg: #252525;
+            --orange-primary: #ff6b00;
+            --text-primary: #f5f5f5;
+            --text-secondary: #cccccc;
+            --border-color: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--orange-primary);
+            padding-bottom: 20px;
+        }
+        
+        header h1 {
+            font-size: 28px;
+            color: var(--orange-primary);
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+        
+        .report-meta {
+            background-color: var(--card-bg);
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-item span:first-child {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .meta-item span:last-child {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--orange-primary);
+            border-left: 4px solid var(--orange-primary);
+            padding-left: 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--orange-primary);
+        }
+        
+        ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background-color: rgba(255, 107, 0, 0.1);
+            font-weight: 600;
+            color: var(--orange-primary);
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background-color: var(--card-bg);
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--orange-primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .quote {
+            background-color: var(--card-bg);
+            border-left: 4px solid var(--orange-primary);
+            padding: 15px;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-    <div id="root"></div>
+    <header>
+        <h1>Relatório do Projeto: Julius AI</h1>
+        <p>O Economizador de Centavos - Desafio de Clones IA</p>
+    </header>
     
-    <!-- Scripts React -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.5/babel.min.js"></script>
+    <div class="report-meta">
+        <div class="meta-item">
+            <span>Persona Base</span>
+            <span>Julius Rock</span>
+        </div>
+        <div class="meta-item">
+            <span>Categoria</span>
+            <span>Educação Financeira</span>
+        </div>
+        <div class="meta-item">
+            <span>Tecnologias</span>
+            <span>TypeScript, React, Supabase</span>
+        </div>
+        <div class="meta-item">
+            <span>Data de Submissão</span>
+            <span>16/03/2025</span>
+        </div>
+    </div>
     
-    <!-- Nosso componente React -->
-    <script type="text/babel" src="julius.js"></script>
+    <section>
+        <h2>1. Visão Geral do Projeto</h2>
+        <div class="card">
+            <p>O Julius AI é um clone IA inspirado na personalidade do personagem Julius Rock da série "Todo Mundo Odeia o Chris". O agente foi desenvolvido para transformar a relação das pessoas com o dinheiro, utilizando a mentalidade única de um pai de família dos anos 80 que trabalha em dois empregos e conta cada centavo.</p>
+            <p>O diferencial principal do clone é a capacidade de converter cada gasto em "horas trabalhadas", criando uma consciência financeira profunda e bem-humorada que transforma a percepção sobre consumo e economia.</p>
+        </div>
+    </section>
+    
+    <section>
+        <h2>2. Processo de Desenvolvimento</h2>
+        <div class="card">
+            <h3>Fase 1: Concepção e Planejamento</h3>
+            <ul>
+                <li>Análise do personagem e suas características marcantes</li>
+                <li>Definição do propósito transformador</li>
+                <li>Planejamento de funcionalidades e experiência do usuário</li>
+            </ul>
+            
+            <h3>Fase 2: Desenvolvimento da Infraestrutura (Planify)</h3>
+            <ul>
+                <li>Arquitetura de frontend com React e TypeScript</li>
+                <li>Estruturação de backend para processamento de dados financeiros</li>
+                <li>Implementação do banco de dados com Supabase</li>
+                <li>Configuração de servidor e deployment</li>
+            </ul>
+            
+            <h3>Fase 3: Construção da Inteligência do Julius</h3>
+            <ul>
+                <li>Engenharia de prompt com sistema de personalidade</li>
+                <li>Criação da base de conhecimento financeira e cultural</li>
+                <li>Desenvolvimento de ferramentas (tools) para análise financeira</li>
+            </ul>
+            
+            <h3>Fase 4: Integração e Otimização</h3>
+            <ul>
+                <li>Vinculação entre Planify e Super Agentes</li>
+                <li>Testes de usabilidade e refinamento de respostas</li>
+                <li>Otimização de performance do sistema</li>
+            </ul>
+            
+            <h3>Fase 5: Validação e Lançamento</h3>
+            <ul>
+                <li>Testes com usuários reais e coleta de feedback</li>
+                <li>Documentação do sistema</li>
+                <li>Preparação do vídeo demonstrativo</li>
+                <li>Submissão para o Desafio de Clones IA</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section>
+        <h2>3. Funcionalidades Principais</h2>
+        <table>
+            <tr>
+                <th>Funcionalidade</th>
+                <th>Descrição</th>
+            </tr>
+            <tr>
+                <td>Cálculo de Horas Trabalhadas</td>
+                <td>Converte gastos em horas de trabalho necessárias para pagá-los</td>
+            </tr>
+            <tr>
+                <td>Registro de Transações</td>
+                <td>Sistema de anotação e categorização de gastos e ganhos</td>
+            </tr>
+            <tr>
+                <td>Diagnóstico Financeiro</td>
+                <td>Análise onde o dinheiro está sendo "jogado fora"</td>
+            </tr>
+            <tr>
+                <td>Sistema de Cupons</td>
+                <td>Recompensas para incentivar economias comprovadas</td>
+            </tr>
+            <tr>
+                <td>Alternativas Econômicas</td>
+                <td>Sugestões personalizadas para reduzir gastos em cada categoria</td>
+            </tr>
+            <tr>
+                <td>Variações de Humor</td>
+                <td>Sistema de personalidade com humor adaptável às situações financeiras</td>
+            </tr>
+        </table>
+    </section>
+    
+    <section>
+        <h2>4. Frases Icônicas Implementadas</h2>
+        <div class="quote">
+            "Sabe quanto custa isso? Com esse dinheiro dá pra comprar arroz e feijão pra uma semana inteira!"
+        </div>
+        <div class="quote">
+            "Eu trabalho em DOIS empregos e durmo apenas QUATRO horas por dia! Não tenho tempo pra jogar dinheiro fora!"
+        </div>
+        <div class="quote">
+            "Isso custou QUANTO? São TRÊS HORAS do meu trabalho! Quando a Rochelle souber disso..."
+        </div>
+        <div class="quote">
+            "Se não comprar nada, o DESCONTO É BEM MAIOR!"
+        </div>
+    </section>
+    
+    <section>
+        <h2>5. Desafios Superados</h2>
+        <div class="card">
+            <ul>
+                <li>Implementação de integrações técnicas sem experiência prévia em programação</li>
+                <li>Desenvolvimento de um sistema financeiro funcional utilizando TypeScript, React e Supabase</li>
+                <li>Criação de um sistema de personalidade com múltiplas variáveis de humor mantendo consistência</li>
+                <li>Balanceamento entre humor autêntico e valor financeiro prático em cada interação</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section>
+        <h2>6. Conclusão</h2>
+        <div class="card">
+            <p>Este clone foi desenvolvido não apenas com o objetivo de ganhar o desafio. Era uma ideia que já tinha para uso pessoal, e o desafio foi o gatilho que eu precisava para tomar coragem e desenvolvê-lo. Nesse processo, superei meus limites, tanto com as integrações quanto com o sistema que desenvolvi utilizando TypeScript, React e o Supabase como banco de dados.</p>
+            <p>Importante destacar que não sou programador e esta foi a primeira aplicação que desenvolvi, utilizando ajuda de IA para criar o código e resolver os bugs que apareceram pelo caminho. Gratidão à Academia Lendária por estimular os membros a superarem seus limites.</p>
+        </div>
+    </section>
+    
+    <footer>
+        © 2025 Julius AI - Desafio de Clones IA da Academia Lendária
+    </footer>
+
+    <script>
+        // Script para inicialização se necessário
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Relatório Julius AI carregado com sucesso!');
+        });
+    </script>
 </body>
-</html>
+</html> 
