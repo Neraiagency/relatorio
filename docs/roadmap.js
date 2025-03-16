@@ -1,412 +1,238 @@
-// Versão simplificada do roadmap em JavaScript puro com React
-const { useState, useEffect } = React;
+// Componente Header
+const Header = () => {
+  return (
+    <header>
+      <h1>Relatório do Projeto: Julius AI</h1>
+      <p>O Economizador de Centavos - Desafio de Clones IA</p>
+    </header>
+  );
+};
 
-// Definição do componente
-function RoadmapInterativo() {
-  const [faseAtiva, setFaseAtiva] = useState(1);
-  const [expandido, setExpandido] = useState({});
+// Componente ReportMeta
+const ReportMeta = () => {
+  const metaItems = [
+    { label: "Persona Base", value: "Julius Rock" },
+    { label: "Categoria", value: "Educação Financeira" },
+    { label: "Tecnologias", value: "TypeScript, React, Supabase" },
+    { label: "Data de Submissão", value: "16/03/2025" }
+  ];
 
-  const toggleExpandir = (id) => {
-    setExpandido(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
+  return (
+    <div className="report-meta">
+      {metaItems.map((item, index) => (
+        <div className="meta-item" key={index}>
+          <span>{item.label}</span>
+          <span>{item.value}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
 
-  // Dados das fases
-  const fases = [
+// Componente Card
+const Card = ({ children }) => {
+  return <div className="card">{children}</div>;
+};
+
+// Componente Section
+const Section = ({ title, children }) => {
+  return (
+    <section>
+      <h2>{title}</h2>
+      {children}
+    </section>
+  );
+};
+
+// Componente OverviewSection
+const OverviewSection = () => {
+  return (
+    <Section title="1. Visão Geral do Projeto">
+      <Card>
+        <p>O Julius AI é um clone IA inspirado na personalidade do personagem Julius Rock da série "Todo Mundo Odeia o Chris". O agente foi desenvolvido para transformar a relação das pessoas com o dinheiro, utilizando a mentalidade única de um pai de família dos anos 80 que trabalha em dois empregos e conta cada centavo.</p>
+        <p>O diferencial principal do clone é a capacidade de converter cada gasto em "horas trabalhadas", criando uma consciência financeira profunda e bem-humorada que transforma a percepção sobre consumo e economia.</p>
+      </Card>
+    </Section>
+  );
+};
+
+// Componente DevelopmentSection
+const DevelopmentSection = () => {
+  const phases = [
     {
-      id: 1,
-      titulo: "Base Atual",
-      periodo: "Já Implementado",
-      descricao: "Fundação do aplicativo com funcionalidades básicas",
-      tarefas: [
-        { 
-          id: "task-1-1", 
-          nome: "Plano Nutricional Estático", 
-          status: "Completo",
-          detalhes: "Planos de alimentação para 4 semanas com déficit calórico progressivo, incluindo macronutrientes, refeições detalhadas e substituições básicas." 
-        },
-        { 
-          id: "task-1-2", 
-          nome: "Calculadora de Água", 
-          status: "Completo", 
-          detalhes: "Calculadora que define ingestão ideal de água baseada no peso do usuário e apresenta visualização de resultados."
-        },
-        { 
-          id: "task-1-3", 
-          nome: "Suplementos Recomendados", 
-          status: "Completo", 
-          detalhes: "Indicações de suplementos divididos por prioridade, incluindo dosagens, timing e benefícios específicos para cutting."
-        },
-        { 
-          id: "task-1-4", 
-          nome: "Registro de Progresso", 
-          status: "Completo", 
-          detalhes: "Sistema para acompanhamento manual de medidas (peso, % gordura, medidas) com visualização tabular e gráfica."
-        },
-        { 
-          id: "task-1-5", 
-          nome: "Registro Fotográfico", 
-          status: "Completo", 
-          detalhes: "Funcionalidade para upload e comparação de fotos nas diferentes fases da transformação (início, meio, final)."
-        }
-      ],
-      tecnologias: ["React", "React Router", "LocalStorage", "CSS3"]
+      title: "Fase 1: Concepção e Planejamento",
+      items: [
+        "Análise do personagem e suas características marcantes",
+        "Definição do propósito transformador",
+        "Planejamento de funcionalidades e experiência do usuário"
+      ]
     },
     {
-      id: 2,
-      titulo: "Fase 1: Nutrição Inteligente",
-      periodo: "Mês 1-2",
-      descricao: "Implementação de IA para personalização de planos nutricionais",
-      tarefas: [
-        { 
-          id: "task-2-1", 
-          nome: "Backend Python", 
-          status: "Pendente", 
-          detalhes: "Criar API em Python usando Flask/FastAPI para processamento dos algoritmos de IA e comunicação com o frontend." 
-        },
-        { 
-          id: "task-2-2", 
-          nome: "Formulário Avançado de Avaliação", 
-          status: "Pendente", 
-          detalhes: "Desenvolver interface para coleta de dados detalhados: peso, altura, idade, nível de atividade, preferências alimentares, restrições, etc."
-        },
-        { 
-          id: "task-2-3", 
-          nome: "Geração de Planos Personalizados com IA", 
-          status: "Pendente", 
-          detalhes: "Implementar algoritmo que cria planos nutricionais adaptados ao perfil e necessidades específicas de cada usuário."
-        },
-        { 
-          id: "task-2-4", 
-          nome: "Sistema de Ajustes Semanais", 
-          status: "Pendente", 
-          detalhes: "Funcionalidade para recalibrar o plano nutricional baseado no progresso reportado semanalmente pelo usuário."
-        },
-        { 
-          id: "task-2-5", 
-          nome: "Banco de Dados de Alternativas", 
-          status: "Pendente", 
-          detalhes: "Expandir banco de dados alimentar com equivalências nutricionais para permitir substituições personalizadas."
-        }
-      ],
-      tecnologias: ["Python", "Flask/FastAPI", "TensorFlow/PyTorch", "MongoDB", "APIs RESTful"]
+      title: "Fase 2: Desenvolvimento da Infraestrutura (Planify)",
+      items: [
+        "Arquitetura de frontend com React e TypeScript",
+        "Estruturação de backend para processamento de dados financeiros",
+        "Implementação do banco de dados com Supabase",
+        "Configuração de servidor e deployment"
+      ]
     },
     {
-      id: 3,
-      titulo: "Fase 2: Assistente Nutricional",
-      periodo: "Mês 3-4",
-      descricao: "Implementação de chatbot inteligente para suporte contínuo",
-      tarefas: [
-        { 
-          id: "task-3-1", 
-          nome: "Modelo NLP Especializado", 
-          status: "Pendente", 
-          detalhes: "Desenvolver/adaptar modelo de processamento de linguagem natural especializado em nutrição, treino e emagrecimento." 
-        },
-        { 
-          id: "task-3-2", 
-          nome: "Interface de Chat", 
-          status: "Pendente", 
-          detalhes: "Criar interface amigável de chat integrada ao aplicativo, acessível de todas as telas via botão flutuante."
-        },
-        { 
-          id: "task-3-3", 
-          nome: "Sistemas de Lembretes Contextuais", 
-          status: "Pendente", 
-          detalhes: "Implementar sistema de notificações inteligentes baseadas nos hábitos e necessidades do usuário."
-        },
-        { 
-          id: "task-3-4", 
-          nome: "Base de Conhecimento Nutricional", 
-          status: "Pendente", 
-          detalhes: "Compilar e estruturar informações sobre nutrição, treino e cutting para alimentar o assistente virtual."
-        },
-        { 
-          id: "task-3-5", 
-          nome: "Integração com Plano Personalizado", 
-          status: "Pendente", 
-          detalhes: "Permitir que o assistente acesse e referencie o plano nutricional do usuário durante as conversas."
-        }
-      ],
-      tecnologias: ["Python", "NLP (spaCy/NLTK)", "GPT API", "WebSockets", "Firebase"]
+      title: "Fase 3: Construção da Inteligência do Julius",
+      items: [
+        "Engenharia de prompt com sistema de personalidade",
+        "Criação da base de conhecimento financeira e cultural",
+        "Desenvolvimento de ferramentas (tools) para análise financeira"
+      ]
     },
     {
-      id: 4,
-      titulo: "Fase 3: Análise de Imagem",
-      periodo: "Mês 5-6",
-      descricao: "Tecnologia de visão computacional para análise de progresso físico",
-      tarefas: [
-        { 
-          id: "task-4-1", 
-          nome: "Algoritmo de Análise Corporal", 
-          status: "Pendente", 
-          detalhes: "Desenvolver modelo de IA capaz de analisar fotos para identificar alterações na composição corporal." 
-        },
-        { 
-          id: "task-4-2", 
-          nome: "Estimativa de % de Gordura", 
-          status: "Pendente", 
-          detalhes: "Implementar funcionalidade para estimar percentual de gordura corporal a partir de imagens padronizadas."
-        },
-        { 
-          id: "task-4-3", 
-          nome: "Detecção Automática de Mudanças", 
-          status: "Pendente", 
-          detalhes: "Sistema para identificar e destacar automaticamente alterações entre fotos de diferentes períodos."
-        },
-        { 
-          id: "task-4-4", 
-          nome: "Interface de Visualização Avançada", 
-          status: "Pendente", 
-          detalhes: "Desenvolver ferramentas visuais para apresentar as análises de imagem de forma clara e motivadora."
-        },
-        { 
-          id: "task-4-5", 
-          nome: "Recursos de Privacidade", 
-          status: "Pendente", 
-          detalhes: "Implementar medidas robustas de segurança e privacidade para armazenamento e processamento de imagens."
-        }
-      ],
-      tecnologias: ["Python", "OpenCV", "TensorFlow", "PyTorch", "Cloud Storage Seguro"]
+      title: "Fase 4: Integração e Otimização",
+      items: [
+        "Vinculação entre Planify e Super Agentes",
+        "Testes de usabilidade e refinamento de respostas",
+        "Otimização de performance do sistema"
+      ]
     },
     {
-      id: 5,
-      titulo: "Fase 4: Previsão e Otimização",
-      periodo: "Mês 7-8",
-      descricao: "Sistema preditivo para antecipar resultados e otimizar estratégias",
-      tarefas: [
-        { 
-          id: "task-5-1", 
-          nome: "Modelo Preditivo de Resultados", 
-          status: "Pendente", 
-          detalhes: "Desenvolver algoritmo de machine learning para prever resultados futuros com base nos dados atuais e históricos." 
-        },
-        { 
-          id: "task-5-2", 
-          nome: "Detecção Preventiva de Plateaus", 
-          status: "Pendente", 
-          detalhes: "Implementar sistema que identifica sinais precoces de estagnação no progresso de perda de peso."
-        },
-        { 
-          id: "task-5-3", 
-          nome: "Recomendações Adaptativas", 
-          status: "Pendente", 
-          detalhes: "Criar motor de recomendações que sugere ajustes proativos no plano para maximizar resultados."
-        },
-        { 
-          id: "task-5-4", 
-          nome: "Visualização de Projeções", 
-          status: "Pendente", 
-          detalhes: "Desenvolver interface para mostrar projeções de resultados sob diferentes cenários e estratégias."
-        },
-        { 
-          id: "task-5-5", 
-          nome: "Sistema de Gamificação", 
-          status: "Pendente", 
-          detalhes: "Implementar elementos de gamificação baseados nas predições para aumentar engajamento e motivação."
-        }
-      ],
-      tecnologias: ["Python", "Scikit-learn", "TensorFlow", "Pandas", "D3.js"]
-    },
-    {
-      id: 6,
-      titulo: "Fase 5: Integração e Refinamento",
-      periodo: "Mês 9-10",
-      descricao: "Unificação das funcionalidades e otimização da experiência do usuário",
-      tarefas: [
-        { 
-          id: "task-6-1", 
-          nome: "Dashboard Unificado", 
-          status: "Pendente", 
-          detalhes: "Criar interface centralizada que integra todas as funcionalidades de IA de forma coesa e intuitiva." 
-        },
-        { 
-          id: "task-6-2", 
-          nome: "Testes de Usabilidade", 
-          status: "Pendente", 
-          detalhes: "Conduzir testes extensivos com usuários reais para identificar pontos de melhoria na experiência."
-        },
-        { 
-          id: "task-6-3", 
-          nome: "Otimização de Performance", 
-          status: "Pendente", 
-          detalhes: "Refinar algoritmos e interfaces para garantir velocidade e responsividade em todos os dispositivos."
-        },
-        { 
-          id: "task-6-4", 
-          nome: "Versão PWA Avançada", 
-          status: "Pendente", 
-          detalhes: "Implementar recursos avançados de Progressive Web App para experiência similar a aplicativo nativo."
-        },
-        { 
-          id: "task-6-5", 
-          nome: "Sistema de Feedback Contínuo", 
-          status: "Pendente", 
-          detalhes: "Implementar mecanismos de coleta de feedback para evolução contínua do aplicativo baseada em dados reais."
-        }
-      ],
-      tecnologias: ["React", "Python", "Testes A/B", "Analytics", "PWA"]
+      title: "Fase 5: Validação e Lançamento",
+      items: [
+        "Testes com usuários reais e coleta de feedback",
+        "Documentação do sistema",
+        "Preparação do vídeo demonstrativo",
+        "Submissão para o Desafio de Clones IA"
+      ]
     }
   ];
 
   return (
-    React.createElement('div', { className: 'roadmap-container p-6 bg-gray-900 rounded-lg' },
-      React.createElement('div', { className: 'mb-8' },
-        React.createElement('h1', { className: 'text-3xl font-bold text-orange-500 mb-2' }, 'Secando Bucho 2.0'),
-        React.createElement('p', { className: 'text-gray-400' }, 'Roadmap de Implementação com Funcionalidades de IA')
-      ),
-
-      // Navegação entre fases
-      React.createElement('div', { className: 'flex overflow-x-auto pb-4 mb-6 gap-2' },
-        fases.map(fase => 
-          React.createElement('button', {
-            key: fase.id,
-            onClick: () => setFaseAtiva(fase.id),
-            className: `px-4 py-2 rounded-lg whitespace-nowrap font-medium text-sm transition-all
-              ${faseAtiva === fase.id 
-                ? 'bg-orange-500 text-white shadow-lg' 
-                : 'bg-gray-800 text-gray-400 hover:bg-gray-700'}`
-          }, fase.titulo)
-        )
-      ),
-
-      // Visualização da linha do tempo
-      React.createElement('div', { className: 'relative mb-12 overflow-hidden' },
-        React.createElement('div', { className: 'h-2 bg-gray-800 rounded-full w-full' }),
-        React.createElement('div', { 
-          className: 'absolute top-0 left-0 h-2 bg-orange-500 rounded-full',
-          style: { width: `${(faseAtiva / fases.length) * 100}%` }
-        }),
-        
-        React.createElement('div', { className: 'flex justify-between mt-2' },
-          fases.map(fase => 
-            React.createElement('div', { 
-              key: fase.id, 
-              className: 'flex flex-col items-center',
-              style: { width: `${100 / fases.length}%` }
-            },
-              React.createElement('div', { 
-                className: `w-4 h-4 rounded-full ${fase.id <= faseAtiva ? 'bg-orange-500' : 'bg-gray-700'}`,
-                style: { marginTop: '-10px' }
-              }),
-              React.createElement('span', { 
-                className: `text-xs mt-2 ${fase.id <= faseAtiva ? 'text-orange-500' : 'text-gray-500'}`
-              }, fase.periodo)
-            )
-          )
-        )
-      ),
-
-      // Detalhes da fase atual
-      fases.filter(fase => fase.id === faseAtiva).map(fase => 
-        React.createElement('div', { 
-          key: fase.id, 
-          className: 'bg-gray-800 rounded-lg p-6 mb-8 transition-all'
-        },
-          React.createElement('div', { className: 'flex justify-between items-start mb-4' },
-            React.createElement('div', {},
-              React.createElement('h2', { className: 'text-2xl font-bold text-orange-400' }, fase.titulo),
-              React.createElement('p', { className: 'text-gray-400' }, fase.periodo)
-            ),
-            React.createElement('span', { className: 'bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm' },
-              fase.id === 1 ? 'Completo' : 'Planejado'
-            )
-          ),
-          
-          React.createElement('p', { className: 'text-gray-300 mb-6' }, fase.descricao),
-          
-          React.createElement('h3', { className: 'text-lg font-medium text-gray-200 mb-4' }, 'Principais Tarefas'),
-          React.createElement('div', { className: 'space-y-3 mb-6' },
-            fase.tarefas.map(tarefa => 
-              React.createElement('div', { key: tarefa.id, className: 'bg-gray-700 rounded-lg p-4' },
-                React.createElement('div', { className: 'flex justify-between items-center' },
-                  React.createElement('div', { className: 'flex items-center' },
-                    React.createElement('div', { 
-                      className: `w-3 h-3 rounded-full mr-3 
-                        ${tarefa.status === 'Completo' ? 'bg-green-500' : 'bg-yellow-500'}`
-                    }),
-                    React.createElement('h4', { className: 'font-medium text-gray-100' }, tarefa.nome)
-                  ),
-                  React.createElement('button', { 
-                    onClick: () => toggleExpandir(tarefa.id),
-                    className: 'text-gray-400 hover:text-gray-200'
-                  }, expandido[tarefa.id] ? '−' : '+')
-                ),
-                
-                expandido[tarefa.id] && 
-                React.createElement('div', { 
-                  className: 'mt-3 pl-6 text-gray-300 text-sm border-l-2 border-gray-600'
-                }, tarefa.detalhes)
-              )
-            )
-          ),
-          
-          React.createElement('h3', { className: 'text-lg font-medium text-gray-200 mb-4' }, 'Tecnologias'),
-          React.createElement('div', { className: 'flex flex-wrap gap-2' },
-            fase.tecnologias.map((tech, index) => 
-              React.createElement('span', { 
-                key: index, 
-                className: 'bg-gray-900 text-gray-300 px-3 py-1 rounded-full text-sm'
-              }, tech)
-            )
-          )
-        )
-      ),
-
-      // Visão geral do projeto
-      React.createElement('div', { className: 'bg-gray-800 rounded-lg p-6' },
-        React.createElement('h3', { className: 'text-xl font-bold text-orange-400 mb-4' }, 'Visão Geral do Projeto'),
-        
-        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-6' },
-          React.createElement('div', { className: 'bg-gray-700 p-4 rounded-lg' },
-            React.createElement('h4', { className: 'font-medium mb-2 text-gray-100' }, 'Tecnologias Frontend'),
-            React.createElement('ul', { className: 'text-gray-300 text-sm space-y-1' },
-              React.createElement('li', {}, '• React (interface atual)'),
-              React.createElement('li', {}, '• Tailwind CSS (estilos modernos)'),
-              React.createElement('li', {}, '• WebSockets (comunicação com chatbot)'),
-              React.createElement('li', {}, '• PWA (experiência nativa)'),
-              React.createElement('li', {}, '• D3.js (visualizações avançadas)')
-            )
-          ),
-          
-          React.createElement('div', { className: 'bg-gray-700 p-4 rounded-lg' },
-            React.createElement('h4', { className: 'font-medium mb-2 text-gray-100' }, 'Tecnologias Backend'),
-            React.createElement('ul', { className: 'text-gray-300 text-sm space-y-1' },
-              React.createElement('li', {}, '• Python (lógica principal)'),
-              React.createElement('li', {}, '• Flask/FastAPI (API RESTful)'),
-              React.createElement('li', {}, '• MongoDB (armazenamento)'),
-              React.createElement('li', {}, '• TensorFlow/PyTorch (modelos IA)'),
-              React.createElement('li', {}, '• Firebase (autenticação/temps)')
-            )
-          ),
-          
-          React.createElement('div', { className: 'bg-gray-700 p-4 rounded-lg' },
-            React.createElement('h4', { className: 'font-medium mb-2 text-gray-100' }, 'Funcionalidades IA'),
-            React.createElement('ul', { className: 'text-gray-300 text-sm space-y-1' },
-              React.createElement('li', {}, '• Geração de planos nutricionais'),
-              React.createElement('li', {}, '• Chatbot com NLP especializado'),
-              React.createElement('li', {}, '• Análise de imagens por CV'),
-              React.createElement('li', {}, '• Previsão de resultados futuros'),
-              React.createElement('li', {}, '• Recomendações adaptativas')
-            )
-          )
-        ),
-        
-        React.createElement('div', { className: 'mt-6 bg-orange-500 bg-opacity-20 border border-orange-500 p-4 rounded-lg' },
-          React.createElement('h4', { className: 'font-medium text-orange-400 mb-2' }, 'Próximos Passos'),
-          React.createElement('p', { className: 'text-gray-300 text-sm' },
-            'Para iniciar a implementação, recomendamos montar a infraestrutura backend em Python e desenvolver a API para os planos nutricionais personalizados, que servirá como base para todas as outras funcionalidades de IA.'
-          )
-        )
-      )
-    )
+    <Section title="2. Processo de Desenvolvimento">
+      <Card>
+        {phases.map((phase, index) => (
+          <React.Fragment key={index}>
+            <h3>{phase.title}</h3>
+            <ul>
+              {phase.items.map((item, itemIndex) => (
+                <li key={itemIndex}>{item}</li>
+              ))}
+            </ul>
+          </React.Fragment>
+        ))}
+      </Card>
+    </Section>
   );
-}
+};
 
-// Renderização do componente
-document.addEventListener('DOMContentLoaded', function() {
-  const root = document.getElementById('root');
-  ReactDOM.render(React.createElement(RoadmapInterativo), root);
-});
+// Componente FeaturesSection
+const FeaturesSection = () => {
+  const features = [
+    { name: "Cálculo de Horas Trabalhadas", description: "Converte gastos em horas de trabalho necessárias para pagá-los" },
+    { name: "Registro de Transações", description: "Sistema de anotação e categorização de gastos e ganhos" },
+    { name: "Diagnóstico Financeiro", description: "Análise onde o dinheiro está sendo \"jogado fora\"" },
+    { name: "Sistema de Cupons", description: "Recompensas para incentivar economias comprovadas" },
+    { name: "Alternativas Econômicas", description: "Sugestões personalizadas para reduzir gastos em cada categoria" },
+    { name: "Variações de Humor", description: "Sistema de personalidade com humor adaptável às situações financeiras" }
+  ];
+
+  return (
+    <Section title="3. Funcionalidades Principais">
+      <table>
+        <thead>
+          <tr>
+            <th>Funcionalidade</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          {features.map((feature, index) => (
+            <tr key={index}>
+              <td>{feature.name}</td>
+              <td>{feature.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </Section>
+  );
+};
+
+// Componente QuotesSection
+const QuotesSection = () => {
+  const quotes = [
+    "\"Sabe quanto custa isso? Com esse dinheiro dá pra comprar arroz e feijão pra uma semana inteira!\"",
+    "\"Eu trabalho em DOIS empregos e durmo apenas QUATRO horas por dia! Não tenho tempo pra jogar dinheiro fora!\"",
+    "\"Isso custou QUANTO? São TRÊS HORAS do meu trabalho! Quando a Rochelle souber disso...\"",
+    "\"Se não comprar nada, o DESCONTO É BEM MAIOR!\""
+  ];
+
+  return (
+    <Section title="4. Frases Icônicas Implementadas">
+      {quotes.map((quote, index) => (
+        <div className="quote" key={index}>
+          {quote}
+        </div>
+      ))}
+    </Section>
+  );
+};
+
+// Componente ChallengesSection
+const ChallengesSection = () => {
+  const challenges = [
+    "Implementação de integrações técnicas sem experiência prévia em programação",
+    "Desenvolvimento de um sistema financeiro funcional utilizando TypeScript, React e Supabase",
+    "Criação de um sistema de personalidade com múltiplas variáveis de humor mantendo consistência",
+    "Balanceamento entre humor autêntico e valor financeiro prático em cada interação"
+  ];
+
+  return (
+    <Section title="5. Desafios Superados">
+      <Card>
+        <ul>
+          {challenges.map((challenge, index) => (
+            <li key={index}>{challenge}</li>
+          ))}
+        </ul>
+      </Card>
+    </Section>
+  );
+};
+
+// Componente ConclusionSection
+const ConclusionSection = () => {
+  return (
+    <Section title="6. Conclusão">
+      <Card>
+        <p>Este clone foi desenvolvido não apenas com o objetivo de ganhar o desafio. Era uma ideia que já tinha para uso pessoal, e o desafio foi o gatilho que eu precisava para tomar coragem e desenvolvê-lo. Nesse processo, superei meus limites, tanto com as integrações quanto com o sistema que desenvolvi utilizando TypeScript, React e o Supabase como banco de dados.</p>
+        <p>Importante destacar que não sou programador e esta foi a primeira aplicação que desenvolvi, utilizando ajuda de IA para criar o código e resolver os bugs que apareceram pelo caminho. Gratidão à Academia Lendária por estimular os membros a superarem seus limites.</p>
+      </Card>
+    </Section>
+  );
+};
+
+// Componente Footer
+const Footer = () => {
+  return (
+    <footer>
+      © 2025 Julius AI - Desafio de Clones IA da Academia Lendária
+    </footer>
+  );
+};
+
+// Componente principal da aplicação
+const App = () => {
+  return (
+    <React.Fragment>
+      <Header />
+      <ReportMeta />
+      <OverviewSection />
+      <DevelopmentSection />
+      <FeaturesSection />
+      <QuotesSection />
+      <ChallengesSection />
+      <ConclusionSection />
+      <Footer />
+    </React.Fragment>
+  );
+};
+
+// Renderiza o componente App no elemento com id "root"
+ReactDOM.render(<App />, document.getElementById("root"));
