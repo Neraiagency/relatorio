@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #111827;
+    color: #f3f4f6;
+  }
+  
+  #root {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .roadmap-container {
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Estilos adicionais para compatibilidade */
+  .bg-orange-500 { background-color: #f97316; }
+  .bg-orange-500.bg-opacity-20 { background-color: rgba(249, 115, 22, 0.2); }
+  .border-orange-500 { border-color: #f97316; }
+  .text-orange-400, .text-orange-500 { color: #f97316; }
+  .text-green-500 { color: #22c55e; }
+  .text-yellow-500 { color: #eab308; }
